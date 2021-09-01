@@ -1,6 +1,5 @@
 require 'octokit'
 require 'open3'
-require 'cliver'
 require 'dotenv'
 
 if ARGV.count != 1
@@ -9,11 +8,6 @@ if ARGV.count != 1
 end
 
 Dotenv.load
-
-def cloc(*args)
-  cloc_path = Cliver.detect! 'cloc'
-  Open3.capture2e(cloc_path, *args)
-end
 
 tmp_dir = File.expand_path "./tmp", File.dirname(__FILE__)
 FileUtils.rm_rf tmp_dir
@@ -31,7 +25,7 @@ client.auto_paginate = true
 
 repos = client.organization_repositories(ARGV[0].strip, type: 'sources').reject(&:archived)
 repo_count = repos.count
-puts "Found #{repos.count} repos. Counting..."
+puts "Found #{repos.count} repos. Exporting..."
 
 reports = []
 repos.each_with_index do |repo, index|
