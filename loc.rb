@@ -30,11 +30,14 @@ client = Octokit::Client.new access_token: ENV["GITHUB_TOKEN"]
 client.auto_paginate = true
 
 repos = client.organization_repositories(ARGV[0].strip, type: 'sources')
+repo_count = repos.count
 puts "Found #{repos.count} repos. Counting..."
 
 reports = []
-repos.each do |repo|
-  puts "Counting #{repo.name}..."
+repos.each_with_index do |repo, index|
+  next if repo.archived
+
+  puts "(#{index} / #{repo_count}) - Counting #{repo.name}..."
 
   destination = File.expand_path repo.name, tmp_dir
   report_file = File.expand_path "#{repo.name}.txt", tmp_dir
