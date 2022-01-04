@@ -1,0 +1,4 @@
+#!/bin/sh
+# Usage: script/export [ORG NAME]
+
+bundle exec ruby export.rb $1
