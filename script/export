@@ -1,4 +1,6 @@
 #!/bin/sh
 # Usage: script/export [ORG NAME]
+#
+# NOTE: You will need a GITHUB OAUTH token, set as the environment variable GITHUB_TOKEN
 
 bundle exec ruby export.rb $1
