@@ -13,6 +13,10 @@ tmp_dir = File.expand_path "./tmp", File.dirname(__FILE__)
 FileUtils.rm_rf tmp_dir
 FileUtils.mkdir_p tmp_dir
 
+export_dir = File.expand_path "./exports", File.dirname(__FILE__)
+FileUtils.rm_rf export_dir
+FileUtils.mkdir_p export_dir
+
 # Enabling support for GitHub Enterprise
 unless ENV["GITHUB_ENTERPRISE_URL"].nil?
   Octokit.configure do |c|
