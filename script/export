@@ -1,4 +1,4 @@
 #!/bin/sh
-# Usage: script/count [ORG NAME]
+# Usage: script/export [ORG NAME]
 
 bundle exec ruby export.rb $1
